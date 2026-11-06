@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="sakura">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="generator" content="IsleForge">
+  <meta name="description" content="長安願景島 - 臺中市西屯區長安國小 3D 動態儀表島。非凡亮點 · 希望校園 ｜ 感動的教育，幸福的長安。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐛</text></svg>">
+  <title>長安願景島 ｜ 3D 動態儀表島</title>
+
+  <!-- 樣式表 -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="guestbook.css">
+  <link rel="stylesheet" href="visit-counter.css">
+
+  <!-- Three.js 與 OrbitControls (相容標準版本) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+
+  <!-- 3D 畫布容器 -->
+  <div id="canvas-container">
+    <canvas id="three-canvas"></canvas>
+  </div>
+
+  <!-- 流星雨專用透明 Canvas -->
+  <canvas id="meteor-canvas"></canvas>
+
+  <!-- 3D 浮動島嶼名稱標籤與對話泡泡層 -->
+  <div id="labels-container" aria-live="polite"></div>
+
+  <!-- 頂部品牌與快捷工具列 -->
+  <header class="top-header">
+    <div class="brand-container" id="brand-box" title="點擊與小安對話">
+      <div class="brand-mascot" id="mascot-btn" role="button" aria-label="吉祥物小安" tabindex="0">🐛</div>
+      <div class="brand-info">
+        <h1>長安願景島</h1>
+        <p>非凡亮點 · 希望校園 ｜ 感動的教育，幸福的長安</p>
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <!-- 主題底色切換 -->
+      <button class="btn-pill" id="theme-btn" aria-label="切換主題底色" title="切換主題底色">
+        <span>🎨</span><span class="btn-text" id="theme-btn-text">櫻花</span>
+      </button>
+
+      <!-- 晝夜時段切換 -->
+      <button class="btn-pill" id="time-btn" aria-label="切換日夜光線" title="切換日夜光線">
+        <span id="time-btn-icon">☀️</span><span class="btn-text" id="time-btn-text">白天</span>
+      </button>
+
+      <!-- 第一人稱漫遊 -->
+      <button class="btn-pill" id="walk-btn" aria-label="第一人稱漫遊" title="第一人稱漫遊模式">
+        <span>🚶</span><span class="btn-text">漫遊</span>
+      </button>
+
+      <!-- 地圖對照 -->
+      <button class="btn-pill" id="map-btn" aria-label="校園地圖對照" title="校園方位與地圖對照">
+        <span>🗺️</span><span class="btn-text">地圖</span>
+      </button>
+
+      <!-- 背景音樂 -->
+      <button class="btn-pill" id="music-btn" aria-label="背景音樂開關" title="播放/暫停背景音樂">
+        <span id="music-icon">🔇</span>
+      </button>
+
+      <!-- 減少動態 -->
+      <button class="btn-pill" id="motion-btn" aria-label="減少動態切換" title="暫停/開啟微動畫">
+        <span id="motion-icon">🌀</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 右側 HUD (羅盤、時鐘、許願流星) -->
+  <aside class="right-hud">
+    <div class="compass-box" id="compass-btn" role="button" aria-label="羅盤（點擊重設視角至北朝上）" title="羅盤：點擊視角朝北">
+      <div class="compass-needle" id="compass-needle"></div>
+    </div>
+
+    <div class="hud-item" id="clock-display" title="即時時鐘與天色">
+      <span>⏱️</span><span id="clock-text">白天 12:00</span>
+    </div>
+
+    <button class="btn-pill" id="wish-btn" aria-label="許願叫出流星雨" title="許願：召喚星空流星雨">
+      <span>🌠</span><span class="btn-text">許願</span>
+    </button>
+
+    <button class="btn-pill" id="replay-btn" aria-label="重播開場運鏡" title="重播開場平順飛近動畫">
+      <span>🎬</span>
+    </button>
+  </aside>
+
+  <!-- 底部功能列 -->
+  <nav class="bottom-dock" aria-label="快捷功能列">
+    <button class="dock-btn active" id="dock-home" aria-label="回到群島全景">
+      <span>🏰</span><span class="btn-text">群島全景</span>
+    </button>
+    <button class="dock-btn" id="dock-list" aria-label="地點清單">
+      <span>📋</span><span class="btn-text">地點清單</span>
+    </button>
+    <button class="dock-btn" id="dock-bag" aria-label="我的背包">
+      <span>🎒</span><span class="btn-text">背包</span><span class="backpack-badge" id="dock-shell-count">3</span>
+    </button>
+    <button class="dock-btn" id="dock-quiz" aria-label="探索小測驗">
+      <span>📝</span><span class="btn-text">小測驗</span>
+    </button>
+    <button class="dock-btn" id="dock-guestbook" aria-label="許願留名">
+      <span>✍️</span><span class="btn-text">許願留名</span>
+    </button>
+    <button class="dock-btn" id="dock-guide" aria-label="小安智慧嚮導">
+      <span>💡</span><span class="btn-text">問小安</span>
+    </button>
+  </nav>
+
+  <!-- 第一人稱地面漫遊 HUD -->
+  <div id="walk-hud">
+    <div class="walk-tip" id="walk-tip">
+      🚶 漫遊中：鍵盤 WASD / 方向鍵移動，拖曳滑鼠環顧視角。<br>按 Esc 或右上角按鈕退回鳥瞰。
+    </div>
+    <div class="walk-crosshair"></div>
+    <button class="walk-exit-btn" id="walk-exit-btn">✕ 退出漫遊</button>
+
+    <!-- 手機虛擬方向鍵 -->
+    <div class="walk-dpad" id="walk-dpad">
+      <button class="dpad-btn dpad-up" id="dpad-up">▲</button>
+      <button class="dpad-btn dpad-down" id="dpad-down">▼</button>
+      <button class="dpad-btn dpad-left" id="dpad-left">◀</button>
+      <button class="dpad-btn dpad-right" id="dpad-right">▶</button>
+    </div>
+  </div>
+
+  <!-- 側邊抽屜內容面板 (點島後開啟) -->
+  <section class="drawer-panel" id="drawer-panel" aria-labelledby="drawer-title" aria-modal="true" role="dialog">
+    <div class="drawer-header">
+      <div class="drawer-title-group">
+        <span class="drawer-tag" id="drawer-tag">關於長安</span>
+        <h2 class="drawer-title" id="drawer-title">基本概況島</h2>
+      </div>
+      <button class="drawer-close" id="drawer-close" aria-label="關閉面板 (Esc)">✕</button>
+    </div>
+
+    <div class="drawer-body" id="drawer-body">
+      <!-- 動態載入島嶼內容 -->
+    </div>
+  </section>
+
+  <!-- 通用 Modal 彈出視窗 (地點清單 / 背包 / 測驗 / 問答 / 地圖) -->
+  <div class="modal-overlay" id="main-modal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">標題</h3>
+        <button class="drawer-close" id="modal-close" aria-label="關閉視窗">✕</button>
+      </div>
+      <div class="modal-body" id="modal-body">
+        <!-- 動態內容注入 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 開場歡迎提示 / 快速操作教學 -->
+  <div class="modal-overlay" id="intro-modal" role="dialog" aria-modal="true">
+    <div class="modal-content" style="max-width: 480px;">
+      <div class="modal-header">
+        <h3 class="modal-title">🎉 歡迎來到長安願景島！</h3>
+        <button class="drawer-close" id="intro-close" aria-label="開始探索">✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center; margin-bottom: 16px;">
+          <div style="font-size: 48px; margin-bottom: 8px;">🐛 🏜️ 🏰</div>
+          <p style="font-weight: bold; color: var(--primary);">感動的教育，幸福的長安</p>
+          <p style="font-size: 13px; color: var(--muted); margin-top: 4px;">由臺中市西屯區長安國小打造的 3D 生活感動態群島</p>
+        </div>
+        <ul class="points-list" style="margin-bottom: 20px;">
+          <li><b>🖱️ 自由探索</b>：按住滑鼠拖曳旋轉、滾輪縮放；點擊任一島嶼飛近看詳細資訊。</li>
+          <li><b>🚶 生活感模式</b>：島上有居民散步、扛貨送貨員與海龜接駁船，點居民可對話與交易！</li>
+          <li><b>🐚 背包交換</b>：沙灘上拾取貝殼，換取長安四大願景紀念特產。</li>
+          <li><b>🎨 底色與日夜</b>：支援櫻花/奶霜/紫夜三種氛圍，流星雨夜空與晨昏自動漸變。</li>
+        </ul>
+        <button class="link-btn-block" id="intro-start-btn" style="width: 100%; border: none; cursor: pointer;">
+          🚀 開始漫遊長安群島
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 引入留言板與訪客計數器組件 -->
+  <script src="guestbook.js"></script>
+  <script src="visit-counter.js"></script>
+
+  <!-- 核心應用腳本 -->
+  <script src="js/scene.js"></script>
+  <script src="js/world.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

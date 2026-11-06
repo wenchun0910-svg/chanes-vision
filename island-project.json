@@ -1,0 +1,486 @@
+{
+  "generator": {
+    "name": "造島工坊 IsleForge",
+    "version": 1,
+    "createdAt": "2026-11-06"
+  },
+  "site": {
+    "title": "長安願景島",
+    "slug": "chanes-vision",
+    "tagline": "非凡亮點 · 希望校園 ｜ 感動的教育，幸福的長安",
+    "author": "長安資訊組",
+    "audience": "家長",
+    "language": "zh-TW",
+    "mascot": {
+      "name": "毛毛蟲/小安",
+      "description": "Q版毛毛蟲"
+    }
+  },
+  "islandType": {
+    "id": "live",
+    "name": "動態儀表島",
+    "description": "一個頻道一座島，定時抓取公開資料（試算表、RSS、YouTube），把最新動態變成會更新的島嶼看板。"
+  },
+  "centerIsland": {
+    "name": "長安願景島",
+    "role": "即時總看板",
+    "description": "即時總看板：各島最重要的幾個數字與最新一則動態，並標示每個資料來源的更新時間。"
+  },
+  "extraLabel": "資料來源網址",
+  "islands": [
+    {
+      "order": 1,
+      "id": "island-01",
+      "name": "基本概況島",
+      "group": "關於長安",
+      "intro": "學校基本概況",
+      "points": [],
+      "extra": "https://chanes.tc.edu.tw/p/412-1225-3994.php?Lang=zh-tw",
+      "link": "",
+      "material": "materials/學校簡介與特色.docx",
+      "materials": [
+        "materials/學校簡介與特色.docx"
+      ]
+    },
+    {
+      "order": 2,
+      "id": "island-02",
+      "name": "生態課程島",
+      "group": "",
+      "intro": "環境生態設施",
+      "points": [],
+      "extra": "",
+      "link": "",
+      "material": "",
+      "materials": []
+    },
+    {
+      "order": 3,
+      "id": "island-03",
+      "name": "行政領導",
+      "group": "",
+      "intro": "校長領導與行政團隊",
+      "points": [],
+      "extra": "",
+      "link": "",
+      "material": "",
+      "materials": []
+    },
+    {
+      "order": 4,
+      "id": "island-04",
+      "name": "非凡亮點島",
+      "group": "",
+      "intro": "非凡亮點 · 希望校園",
+      "points": [],
+      "extra": "https://sites.google.com/mail.chanes.tc.edu.tw/panda/",
+      "link": "",
+      "material": "materials/學校簡介與特色.docx",
+      "materials": [
+        "materials/學校簡介與特色.docx"
+      ]
+    },
+    {
+      "order": 5,
+      "id": "island-05",
+      "name": "卓越榮譽島",
+      "group": "校外榮譽",
+      "intro": "榮譽榜",
+      "points": [],
+      "extra": "https://school.tc.edu.tw/open-message-rss/193661?kind=%E6%A0",
+      "link": "",
+      "material": "materials/學校簡介與特色.docx",
+      "materials": [
+        "materials/學校簡介與特色.docx"
+      ]
+    }
+  ],
+  "theme": {
+    "style": "低多邊形微縮模型",
+    "font": "手寫感",
+    "primary": "#c0567a",
+    "accent": "#f0a04b",
+    "backgrounds": [
+      {
+        "name": "櫻花",
+        "background": "#fdf0f2",
+        "default": true
+      },
+      {
+        "name": "奶霜",
+        "background": "#fbf6ee",
+        "default": false
+      },
+      {
+        "name": "紫夜",
+        "background": "#2a1f33",
+        "default": false
+      }
+    ],
+    "autoByTime": {
+      "enabled": true,
+      "day": "奶霜",
+      "dusk": "櫻花",
+      "night": "紫夜",
+      "spec": "references/theme.md"
+    }
+  },
+  "features": [
+    {
+      "id": "list",
+      "name": "地點清單",
+      "description": "不用 3D 也能讀完所有內容"
+    },
+    {
+      "id": "people",
+      "name": "小人物散步",
+      "description": "島上有小人物沿著道路走動，增加生活感"
+    },
+    {
+      "id": "dayNight",
+      "name": "晝夜切換",
+      "description": "白天、黃昏、夜晚光線"
+    },
+    {
+      "id": "clock",
+      "name": "即時時鐘",
+      "description": "顯示目前時間與天色"
+    },
+    {
+      "id": "reducedMotion",
+      "name": "減少動態",
+      "description": "暫停動畫，保護容易暈眩的人"
+    },
+    {
+      "id": "npcTalk",
+      "name": "居民對話與交易",
+      "description": "點居民會停下來揮手聊天，可以用撿到的東西跟居民交換"
+    },
+    {
+      "id": "skyLife",
+      "name": "天空與海的動態",
+      "description": "雲朵飄移、鳥群飛過、帆船繞島、海浪起伏"
+    },
+    {
+      "id": "nightLights",
+      "name": "夜晚燈光",
+      "description": "天黑後路燈、窗戶、市集燈亮起，還有螢火蟲"
+    },
+    {
+      "id": "quiz",
+      "name": "小測驗",
+      "description": "每座島或中央島的測驗題"
+    },
+    {
+      "id": "certificate",
+      "name": "完成證書",
+      "description": "全部完成後可下載或列印"
+    },
+    {
+      "id": "music",
+      "name": "背景音樂",
+      "description": "使用者按下才播放，可關閉"
+    },
+    {
+      "id": "guide",
+      "name": "小嚮導問答",
+      "description": "從網站內容找答案並附出處，不需 API 金鑰"
+    },
+    {
+      "id": "walkMode",
+      "name": "地面漫遊",
+      "description": "切到第一人稱走在島上與橋上，WASD／方向鍵或畫面方向鍵移動，拖曳環顧"
+    },
+    {
+      "id": "realPlace",
+      "name": "依真實地圖重建",
+      "description": "照你提供的平面圖／照片擺出真實位置與外觀，附羅盤、地圖對照與「示意模型」說明"
+    },
+    {
+      "id": "meteorShower",
+      "name": "流星雨",
+      "description": "夜晚不定時劃過流星，偶爾來一陣流星雨，可以按「🌠 許願」叫出一陣"
+    },
+    {
+      "id": "seaGuide",
+      "name": "海龜接駁嚮導",
+      "description": "一隻大海龜沿著群島游動，背上載著小人物，靠岸時會把人接到下一座島"
+    },
+    {
+      "id": "guestbook",
+      "name": "訪客留名",
+      "description": "訪客可以在島上留下暱稱和一句話，大家都看得到；留名存在你的 Google 試算表"
+    },
+    {
+      "id": "visitCounter",
+      "name": "訪客計數器",
+      "description": "畫面角落顯示累計多少人次來過、今天幾人；是真實數字，同一台裝置一天只算一次，連不上就不顯示"
+    }
+  ],
+  "rpgMode": {
+    "enabled": false
+  },
+  "livingWorld": {
+    "enabled": true,
+    "spec": "references/living-world.md",
+    "residentsPerIsland": 2,
+    "trade": true,
+    "dayNight": [
+      "day",
+      "dusk",
+      "night",
+      "auto",
+      "realtime"
+    ],
+    "sky": [
+      "clouds",
+      "birds",
+      "boats"
+    ],
+    "nightLights": true
+  },
+  "look": {
+    "spec": "references/look-and-feel.md",
+    "shape": {
+      "id": "desert",
+      "name": "沙漠綠洲"
+    },
+    "detail": {
+      "level": 3,
+      "name": "精緻",
+      "requirement": "在標準之上：每島再加石板小路、圍籬或花圃、2 個以上小道具（長椅、木箱、告示牌、水井…）；邊緣加草叢與小石頭；材質分 3 層以上色階"
+    },
+    "animals": [
+      {
+        "id": "squirrel",
+        "icon": "🐿️",
+        "name": "松鼠",
+        "where": "land"
+      },
+      {
+        "id": "rabbit",
+        "icon": "🐰",
+        "name": "兔子",
+        "where": "land"
+      },
+      {
+        "id": "duck",
+        "icon": "🦆",
+        "name": "鴨子",
+        "where": "shore"
+      },
+      {
+        "id": "butterfly",
+        "icon": "🦋",
+        "name": "蝴蝶",
+        "where": "air"
+      },
+      {
+        "id": "turtle",
+        "icon": "🐢",
+        "name": "海龜",
+        "where": "sea"
+      },
+      {
+        "id": "dolphin",
+        "icon": "🐬",
+        "name": "海豚",
+        "where": "sea"
+      },
+      {
+        "id": "penguin",
+        "icon": "🐧",
+        "name": "企鵝",
+        "where": "shore"
+      },
+      {
+        "id": "crab",
+        "icon": "🦀",
+        "name": "螃蟹",
+        "where": "shore"
+      },
+      {
+        "id": "seal",
+        "icon": "🦭",
+        "name": "海豹",
+        "where": "shore"
+      },
+      {
+        "id": "whale",
+        "icon": "🐋",
+        "name": "鯨魚",
+        "where": "sea"
+      },
+      {
+        "id": "seagull",
+        "icon": "🕊️",
+        "name": "海鷗",
+        "where": "air"
+      },
+      {
+        "id": "dog",
+        "icon": "🐶",
+        "name": "小狗",
+        "where": "land"
+      },
+      {
+        "id": "cow",
+        "icon": "🐄",
+        "name": "乳牛",
+        "where": "land"
+      },
+      {
+        "id": "cat",
+        "icon": "🐱",
+        "name": "貓咪",
+        "where": "land"
+      },
+      {
+        "id": "sheep",
+        "icon": "🐑",
+        "name": "綿羊",
+        "where": "land"
+      },
+      {
+        "id": "deer",
+        "icon": "🦌",
+        "name": "小鹿",
+        "where": "land"
+      },
+      {
+        "id": "fox",
+        "icon": "🦊",
+        "name": "狐狸",
+        "where": "land"
+      },
+      {
+        "id": "panda",
+        "icon": "🐼",
+        "name": "熊貓",
+        "where": "land"
+      },
+      {
+        "id": "frog",
+        "icon": "🐸",
+        "name": "青蛙",
+        "where": "shore"
+      },
+      {
+        "id": "hedgehog",
+        "icon": "🦔",
+        "name": "刺蝟",
+        "where": "land"
+      },
+      {
+        "id": "pig",
+        "icon": "🐷",
+        "name": "小豬",
+        "where": "land"
+      },
+      {
+        "id": "chick",
+        "icon": "🐥",
+        "name": "小雞",
+        "where": "land"
+      }
+    ],
+    "extras": [
+      {
+        "id": "flowers",
+        "name": "花田"
+      },
+      {
+        "id": "windmill",
+        "name": "風車"
+      },
+      {
+        "id": "lighthouse",
+        "name": "燈塔"
+      },
+      {
+        "id": "ferris",
+        "name": "摩天輪"
+      },
+      {
+        "id": "hotspring",
+        "name": "溫泉"
+      },
+      {
+        "id": "rainbow",
+        "name": "彩虹"
+      },
+      {
+        "id": "kites",
+        "name": "風箏"
+      },
+      {
+        "id": "waterfall",
+        "name": "瀑布"
+      },
+      {
+        "id": "balloon",
+        "name": "熱氣球"
+      },
+      {
+        "id": "fountain",
+        "name": "噴泉廣場"
+      },
+      {
+        "id": "sakura",
+        "name": "櫻花樹"
+      },
+      {
+        "id": "bunting",
+        "name": "彩旗串"
+      },
+      {
+        "id": "campfire",
+        "name": "營火"
+      }
+    ],
+    "cinema": {
+      "id": "smooth",
+      "name": "平順飛近",
+      "requirement": "開場 2～3 秒從高空俯瞰緩降到全景；點島時用 ease-in-out 曲線 1～1.5 秒飛近並轉向該島"
+    }
+  },
+  "guestbook": {
+    "enabled": true,
+    "spec": "references/guestbook.md",
+    "style": "lantern",
+    "styleName": "許願燈籠",
+    "review": true,
+    "message": true,
+    "backend": "gas",
+    "gasUrl": "https://script.google.com/macros/s/AKfycbykFPcR9SBehAJIelMDfPTUHRw8WOJB7_c4cr3K9LKD7AgOvjWuK3PdwLJLZ8USbNG9tA/exec"
+  },
+  "visitCounter": {
+    "enabled": true,
+    "spec": "references/visit-counter.md",
+    "backend": "gas-shared"
+  },
+  "exploreLive": {
+    "enabled": true,
+    "spec": "references/explore-and-live.md",
+    "features": [
+      "walkMode",
+      "realPlace",
+      "meteorShower",
+      "seaGuide"
+    ],
+    "liveData": []
+  },
+  "release": {
+    "version": 1,
+    "basedOn": null,
+    "updatedAt": "2026-11-06",
+    "history": [
+      {
+        "version": 1,
+        "date": "2026-11-06",
+        "summary": "第一版"
+      }
+    ]
+  },
+  "publishMaterials": false
+}
